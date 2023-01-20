@@ -42,6 +42,7 @@ import frc.robot.commands.DeployIntake;
 import frc.robot.commands.AutoMove;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.AutoTurn;
+import frc.robot.commands.AutoBalance;
 import frc.robot.commands.ClimberCommand;
 // import frc.robot.commands.ClimberRetract;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -192,6 +193,10 @@ public class RobotContainer {
       .whenPressed(()-> m_guestMode.setGuestMode(false));
 
     
+    new JoystickButton(m_driveController, XboxController.Button.kY.value)
+      .whenHeld(() -> new AutoBalance(m_driveTrainSubsystem));
+    
+
     //  dev mode
      //new JoystickButton(m_driveController, XboxController.Button.kX.value)
      //.whenPressed(() -> m_shooterFeederSubsystem.shooterRpmStepIncrease());

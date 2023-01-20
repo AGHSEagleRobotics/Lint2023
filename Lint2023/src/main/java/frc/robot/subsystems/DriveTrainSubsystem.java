@@ -67,7 +67,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
     m_gyro = gyro;
     m_gyro.calibrate();
     m_gyro.reset();
-    m_gyro.setYawAxis(IMUAxis.kZ);
+    // m_gyro.setYawAxis(IMUAxis.kZ);
+    m_gyro.setYawAxis(IMUAxis.kY);
     
     //add to shuffle board
     addChild("DifferentialDrive", m_differentialDrive);
