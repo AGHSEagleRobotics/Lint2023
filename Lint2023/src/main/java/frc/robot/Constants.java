@@ -31,6 +31,7 @@ public final class Constants {
         public static final double EXPIRATION = 0.1;
         public static final double MAX_OUTPUT = 1.0;
         public static final double DEADBAND =   0.1;
+        public static final double P = 0.05;
 
         public static final int CANID_LEFT_FRONT    = 1;
         public static final int CANID_LEFT_BACK     = 2;

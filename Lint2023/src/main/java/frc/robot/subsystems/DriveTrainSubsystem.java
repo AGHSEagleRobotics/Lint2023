@@ -22,6 +22,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
 
   //define class fields
+  private int counter;
   private final DifferentialDrive m_differentialDrive;
   private final ADIS16470_IMU m_gyro;
 
@@ -64,11 +65,13 @@ public class DriveTrainSubsystem extends SubsystemBase {
     rightFront.setNeutralMode(NeutralMode.Brake);
     rightBack.setNeutralMode(NeutralMode.Brake);
 
+
+
     m_gyro = gyro;
+    m_gyro.setYawAxis(IMUAxis.kY);
     m_gyro.calibrate();
     m_gyro.reset();
     // m_gyro.setYawAxis(IMUAxis.kZ);
-    m_gyro.setYawAxis(IMUAxis.kY);
     
     //add to shuffle board
     addChild("DifferentialDrive", m_differentialDrive);
@@ -150,6 +153,13 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    double angle = getGyroAngle();
+    counter++;
+    while(counter==10){
+
+      System.out.println("Angle: "+angle);
+      counter=0;
+    }
     // This method will be called once per scheduler run
     // log.info("Rotation: {}, X angle: {}, Y angle: {}", m_gyro.getAngle(), m_gyro.getXComplementaryAngle(), m_gyro.getYComplementaryAngle());
     // log.debug("Y angle: {}", m_gyro.getAngle());

@@ -179,8 +179,8 @@ public class RobotContainer {
       .whileHeld(() -> m_climberSubsystem.setWinchPower(-1));
     new Button(() -> isDriverDPadDown())
       .whileHeld(() -> m_climberSubsystem.setWinchPower(1));
-    new Button(() -> isDriverDPadOff())
-      .whileHeld(() -> m_climberSubsystem.setWinchPower(0));
+    // new Button(() -> isDriverDPadOff())
+     // .whileHeld(() -> m_climberSubsystem.setWinchPower(0));
 
     new JoystickButton(m_driveController, XboxController.Button.kA.value)
         .whenPressed(()-> m_guestMode.setGuestMode(true));
@@ -194,7 +194,8 @@ public class RobotContainer {
 
     
     new JoystickButton(m_driveController, XboxController.Button.kY.value)
-      .whenHeld(() -> new AutoBalance(m_driveTrainSubsystem));
+      .whenPressed(() -> new AutoBalance(m_driveTrainSubsystem,0,180));
+      
     
 
     //  dev mode

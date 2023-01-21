@@ -11,6 +11,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveTrainConstants;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class AutoBalance extends CommandBase {
@@ -19,6 +20,7 @@ public class AutoBalance extends CommandBase {
   private DriveTrainSubsystem m_driveTrainSubsystem;
   private final double m_turnSpeed;
   private final double m_turnAngleSet;
+  
 
   private final PIDController m_pidController = new PIDController(AutoConstants.TURN_P_VALUE, 0, 0);
 
@@ -46,12 +48,14 @@ public class AutoBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double turnSpeed;
+  //  double turnSpeed;
     double angle = m_driveTrainSubsystem.getGyroAngle();
+    double pSpeed = angle * DriveTrainConstants.P;
+    m_driveTrainSubsystem.tankDrive(pSpeed, pSpeed);
     System.out.println("Angle: "+angle);
 
-    turnSpeed = m_pidController.calculate(angle, m_turnAngleSet);
-    turnSpeed = MathUtil.clamp(turnSpeed, -m_turnSpeed, m_turnSpeed);
+   // turnSpeed = m_pidController.calculate(angle, m_turnAngleSet);
+   // turnSpeed = MathUtil.clamp(turnSpeed, -m_turnSpeed, m_turnSpeed);
 
     // log.debug("Angle: {} \tturnSpeed: {} \tTurnSetPoint: {}", angle, turnSpeed, m_turnAngleSet);
     //System.out.println("Angle: "+angle+"\tturnSpeed: "+turnSpeed+"\tTurnSetPoint"+m_turnAngleSet);
