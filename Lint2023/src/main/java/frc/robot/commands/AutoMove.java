@@ -32,7 +32,7 @@ public class AutoMove extends CommandBase {
     m_speed = speed;
     m_curve = curve;
     // Use addRequirements() here to declare subsystem dependencies.
-
+    
     addRequirements(driveTrainSubsystem);
 
     //Setting PID control tolerance
@@ -42,8 +42,10 @@ public class AutoMove extends CommandBase {
   public AutoMove(DriveTrainSubsystem driveTrainSubsystem, double setPoint, double speed) {
     this(driveTrainSubsystem, setPoint, speed, 0.0);
   }
-
-  // Called when the command is initially scheduled.
+  
+ 
+  
+    // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     log.info("m_setPoint={}\tm_speed={}\tm_curve={}",m_setPoint,m_speed,m_curve);

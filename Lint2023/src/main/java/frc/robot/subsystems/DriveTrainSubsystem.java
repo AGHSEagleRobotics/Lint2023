@@ -122,7 +122,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
   }
 
   public double getGyroAngle() {
-    return -(m_gyro.getAngle());
+    return (m_gyro.getAngle());
   }
 
   public double getRightEncoderDistance(){

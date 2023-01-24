@@ -372,7 +372,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-
+    return new AutoBalance(m_driveTrainSubsystem, 0, 0);
     //new PrintCommand("************************\n************************\n getAutonomousCommand() \n\n");
 
     // Position position = m_dashboard.getPosition();
@@ -389,7 +389,7 @@ public class RobotContainer {
 
     // }
 
-    Objective objective = m_dashboard.getObjective();
+    /*Objective objective = m_dashboard.getObjective();
     Position position = m_dashboard.getPosition();
     log.info("Objective: " + objective + "   Position: " + position);
     //objective = Objective.MOVESHOOT1;
@@ -572,6 +572,7 @@ public class RobotContainer {
 
     }
       return null;
+      */
     }
   
   // public Command getRetractCommand() {
