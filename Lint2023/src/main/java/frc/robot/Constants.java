@@ -31,7 +31,8 @@ public final class Constants {
         public static final double EXPIRATION = 0.1;
         public static final double MAX_OUTPUT = 1.0;
         public static final double DEADBAND =   0.1;
-        public static final double P = 0.05;
+        public static final double BALANCE_P_VALUE = 0.02;
+        public static final double BALANCE_CONSTANT = 0.2;
 
         public static final int CANID_LEFT_FRONT    = 1;
         public static final int CANID_LEFT_BACK     = 2;

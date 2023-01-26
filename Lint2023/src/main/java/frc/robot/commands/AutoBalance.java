@@ -22,7 +22,7 @@ public class AutoBalance extends CommandBase {
   private final double m_turnAngleSet;
   
 
-  private final PIDController m_pidController = new PIDController(AutoConstants.TURN_P_VALUE, 0, 0);
+  private final PIDController m_pidController = new PIDController(DriveTrainConstants.BALANCE_P_VALUE, 0, 0);
 
   /** Creates a new AutoTurn. */
   public AutoBalance(DriveTrainSubsystem driveTrainSubsystem, double turnSpeed, double turnAngleSet) {
@@ -33,7 +33,8 @@ public class AutoBalance extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrainSubsystem);
 
-    m_pidController.setTolerance(AutoConstants.TURN_P_TOLERANCE);
+    m_pidController.setTolerance(DriveTrainConstants.BALANCE_P_VALUE);
+    
   }
 
   // Called when the command is initially scheduled.
@@ -50,11 +51,17 @@ public class AutoBalance extends CommandBase {
   public void execute() {
   //  double turnSpeed;
     double angle = m_driveTrainSubsystem.getGyroAngle();
-    double pSpeed = angle * DriveTrainConstants.P;
+    double pSpeed = angle * DriveTrainConstants.BALANCE_P_VALUE;
     m_driveTrainSubsystem.tankDrive(pSpeed, pSpeed);
+    
+    /* TODO test constant code
+    double constantSpeed = DriveTrainConstants.BALANCE_CONSTANT;
+    m_driveTrainSubsystem.tankDrive(constantSpeed, constantSpeed);
+    */
+    
     System.out.println("Angle: "+angle);
 
-   // turnSpeed = m_pidController.calculate(angle, m_turnAngleSet);
+    // turnSpeed = m_pidController.calculate(angle, m_turnAngleSet);
    // turnSpeed = MathUtil.clamp(turnSpeed, -m_turnSpeed, m_turnSpeed);
 
     // log.debug("Angle: {} \tturnSpeed: {} \tTurnSetPoint: {}", angle, turnSpeed, m_turnAngleSet);
@@ -73,6 +80,7 @@ public class AutoBalance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    boolean finished = (m_pidController.atSetpoint());
     // boolean finished = (m_pidController.atSetpoint());
     // return finished;
     return false;
