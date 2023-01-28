@@ -71,11 +71,11 @@ public class Drive extends CommandBase {
 
     if (m_guestMode.isEnabled()){
       speed = -m_guestLeftStickYAxis.get() * m_guestMode.getSpeed();
-      rotation = m_guestRightStickXAxis.get() * m_guestMode.getSpeed();
+      rotation = -m_guestRightStickXAxis.get() * m_guestMode.getSpeed();
     }
     else{
       speed = -m_driveLeftStickYAxis.get();
-      rotation = m_driveRightStickXAxis.get();
+      rotation = -m_driveRightStickXAxis.get();
     }
 
 

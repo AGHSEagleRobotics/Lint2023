@@ -92,7 +92,7 @@ public class RobotContainer {
 
   private final RumbleSubsystem m_rumbleSubsystem = new RumbleSubsystem(m_driveController);
 
-  private final DriveTrainSubsystem m_driveTrainSubsystem = new DriveTrainSubsystem(
+  public final DriveTrainSubsystem m_driveTrainSubsystem = new DriveTrainSubsystem(
     new WPI_TalonFX(DriveTrainConstants.CANID_LEFT_FRONT), 
     new WPI_TalonFX(DriveTrainConstants.CANID_LEFT_BACK), 
     new WPI_TalonFX(DriveTrainConstants.CANID_RIGHT_FRONT), 

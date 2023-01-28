@@ -20,7 +20,11 @@ public class AutoBalance extends CommandBase {
   private DriveTrainSubsystem m_driveTrainSubsystem;
   private final double m_turnSpeed;
   private final double m_turnAngleSet;
-  
+
+  private double m_angle1 = 0;
+  private double m_angle2 = 0;
+  private double m_angle3 = 0;
+  private int m_tickCounter = 0;
 
   private final PIDController m_pidController = new PIDController(DriveTrainConstants.BALANCE_P_VALUE, 0, 0);
 
@@ -49,19 +53,40 @@ public class AutoBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  //  double turnSpeed;
+    //  double turnSpeed;
+    m_tickCounter++;
+
+    double pSpeed;
     double angle = m_driveTrainSubsystem.getGyroAngle();
-    //double pSpeed = angle * DriveTrainConstants.BALANCE_P_VALUE;
-    double pSpeed = Math.pow((angle/15), 3);
-    MathUtil.clamp(pSpeed, -0.3, 0.3);
-    m_driveTrainSubsystem.tankDrive(pSpeed, pSpeed);
+    double averageAngle = Math.abs((m_angle1 + m_angle2 + m_angle3) / 3);
+    System.out.println("Angle1: "+ m_angle1 + "   Angle2: " + m_angle2 + "   Angle3: " + m_angle3);
+    System.out.println("Average Angle: "+ averageAngle);
+
+    if( averageAngle - Math.abs(angle) > 1){
+    //if( Math.abs(angle) < 13.5 ){
+      pSpeed = 0;
+    }
+    else {
+          //double pSpeed = angle * DriveTrainConstants.BALANCE_P_VALUE;
+      pSpeed = Math.pow(((Math.abs(angle))/15), 3);
+      System.out.println("(abs(angle)/15)^7 :  " + pSpeed);
+      pSpeed = Math.copySign(pSpeed, angle);
+      System.out.println("pSpeed copySign :  " + pSpeed);
+      pSpeed = MathUtil.clamp(pSpeed, -0.45, 0.45);
+      System.out.println("pSpeed clamped :  " + pSpeed);
+      m_driveTrainSubsystem.tankDrive(pSpeed, pSpeed);
+    
+    }
     
     /* TODO test constant code
     double constantSpeed = DriveTrainConstants.BALANCE_CONSTANT;
     m_driveTrainSubsystem.tankDrive(constantSpeed, constantSpeed);
     */
-    
-    System.out.println("Angle: "+angle);
+    if( m_tickCounter == 1){ m_angle1 = angle; }
+    if( m_tickCounter == 2){ m_angle2 = angle; }
+    if( m_tickCounter == 3){ m_angle3 = angle; m_tickCounter=0; }
+
+    System.out.println("Angle: "+angle + "/t Speed: " + pSpeed);
 
     // turnSpeed = m_pidController.calculate(angle, m_turnAngleSet);
    // turnSpeed = MathUtil.clamp(turnSpeed, -m_turnSpeed, m_turnSpeed);
