@@ -51,7 +51,9 @@ public class AutoBalance extends CommandBase {
   public void execute() {
   //  double turnSpeed;
     double angle = m_driveTrainSubsystem.getGyroAngle();
-    double pSpeed = angle * DriveTrainConstants.BALANCE_P_VALUE;
+    //double pSpeed = angle * DriveTrainConstants.BALANCE_P_VALUE;
+    double pSpeed = Math.pow((angle/15), 3);
+    MathUtil.clamp(pSpeed, -0.3, 0.3);
     m_driveTrainSubsystem.tankDrive(pSpeed, pSpeed);
     
     /* TODO test constant code
