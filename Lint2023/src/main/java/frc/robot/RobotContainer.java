@@ -250,8 +250,8 @@ public class RobotContainer {
     new JoystickButton(m_driveController, XboxController.Button.kBack.value)
       .whenHeld(new ShootEject(m_shooterFeederSubsystem, m_transitionSubsystem));
 
-    // new Button (() -> isDriverDPadPressed()).whenHeld(new REject(
-    //   m_intakeSubsystem, m_transitionSubsystem, m_shooterFeederSubsystem));
+    new Button (() -> isDriverDPadPressed()).whenHeld(new REject(
+      m_intakeSubsystem, m_transitionSubsystem, m_shooterFeederSubsystem));
 
     // new Button (() -> isDriverDPadPressed())
     // .whenReleased(new DeployIntake(m_intakeSubsystem, m_transitionSubsystem));
@@ -350,6 +350,9 @@ public class RobotContainer {
   }
   public static boolean isDriverDPadOff() {
     return m_driveController.getPOV() == -1;
+  }
+  public static boolean isDriverDPadPressed() {
+    return m_driveController.getPOV() > -1;
   }
 
   // op dpad
