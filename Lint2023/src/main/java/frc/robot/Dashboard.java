@@ -86,6 +86,7 @@ public class Dashboard {
         THREEBALLAUTO ("3ball"),
         FOURBALLAUTO ("4BALL"),
         DONOTHING ("Nothing"),
+        MEOW ("SukhadTestAuto"),
         ;
 
         public static final Objective Default = MOVESHOOT1;
