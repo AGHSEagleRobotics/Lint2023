@@ -372,7 +372,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new AutoBalance(m_driveTrainSubsystem, 0, 0);
+    // return new AutoBalance(m_driveTrainSubsystem, 0, 0);
     //new PrintCommand("************************\n************************\n getAutonomousCommand() \n\n");
 
     // Position position = m_dashboard.getPosition();
@@ -388,8 +388,8 @@ public class RobotContainer {
     //   case POSITION4:
 
     // }
-
-    /*Objective objective = m_dashboard.getObjective();
+    
+    Objective objective = m_dashboard.getObjective();
     Position position = m_dashboard.getPosition();
     log.info("Objective: " + objective + "   Position: " + position);
     //objective = Objective.MOVESHOOT1;
@@ -569,16 +569,20 @@ public class RobotContainer {
         
       case DONOTHING:
       return null;
+      
+      case MOVECIRCLE:
+        return new AutoTurn( m_driveTrainSubsystem, 0.2 , 90)
+        .andThen(new WaitCommand(0.5))
+        .andThen(new AutoMove (m_driveTrainSubsystem, 20, 0.2 ))
+        .andThen(new WaitCommand(0.5))
+        .andThen(new AutoTurn (m_driveTrainSubsystem,0.2, 45));
+    }
 
-    }
       return null;
-      */
+      
     }
-  
-  // public Command getRetractCommand() {
-  //   ClimberRetract m_climberRetract = new ClimberRetract(m_climberSubsystem);
-  //   return m_climberRetract;
-  // }
+    
+
   
 
   public void simulationInit() {
