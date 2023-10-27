@@ -571,8 +571,24 @@ public class RobotContainer {
       return null;
 
       case MEOW:
-      return new AutoMove(m_driveTrainSubsystem, -50, 0.5)
-     .andThen(new AutoTurn(m_driveTrainSubsystem, 0.25, 13 ));
+      return new AutoMove(m_driveTrainSubsystem, 10, 0.5)
+     .andThen(new AutoTurn(m_driveTrainSubsystem, 0.15, -90 ))
+     .andThen(new DeployIntake(m_intakeSubsystem, m_transitionSubsystem))
+        .withTimeout(2)
+      .andThen(new RetractIntake(m_intakeSubsystem))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.15, -90))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 10, 0.5))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.15, -90))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 10, 0.5))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.15, -90))
+      .andThen(new AutoShoot(m_shooterFeederSubsystem, m_transitionSubsystem, AUTO_SHOOT_RPM)
+      .withTimeout(1));
+//Not sure how turn system works, testing with different distances 
+
+
+        
+
+
 
 
 
