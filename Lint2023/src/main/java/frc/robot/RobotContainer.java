@@ -571,11 +571,30 @@ public class RobotContainer {
       return null;
 
       case MOVECIRCLE:
+
       
-      return new AutoMove(m_driveTrainSubsystem, 30, 0.5)
-      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.2, 45))
-      .andThen(new AutoMove(m_driveTrainSubsystem, 20, 0.5))
-      .andThen(new AutoMove(m_driveTrainSubsystem, -20, 0.5));
+      
+      return new AutoMove(m_driveTrainSubsystem, 3, 0.2)
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2))
+      .andThen(new AutoTurn(m_driveTrainSubsystem, 0.3, 14.4))
+      .andThen(new AutoMove(m_driveTrainSubsystem, 3, 0.2));
+
+
 
 
     }
