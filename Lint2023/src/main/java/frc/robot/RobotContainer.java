@@ -570,12 +570,26 @@ public class RobotContainer {
       case DONOTHING:
       return null;
       
+
+      //positive degrees turns left, negative degrees turns right
       case MOVECIRCLE:
-        return new AutoTurn( m_driveTrainSubsystem, 0.2 , 90)
-        .andThen(new WaitCommand(0.5))
+        return new AutoTurn( m_driveTrainSubsystem, 0.2 , -90)
         .andThen(new AutoMove (m_driveTrainSubsystem, 20, 0.2 ))
-        .andThen(new WaitCommand(0.5))
-        .andThen(new AutoTurn (m_driveTrainSubsystem,0.2, 45));
+        .andThen(new AutoTurn (m_driveTrainSubsystem,0.2, -90))
+        .andThen(new AutoShoot(m_shooterFeederSubsystem, m_transitionSubsystem, 3700)
+          .withTimeout(2))
+        .andThen(new AutoTurn(m_driveTrainSubsystem,0.2 , 90))
+        .andThen(new AutoMove(m_driveTrainSubsystem,-20 , 0.2 ))
+        .andThen(new AutoTurn(m_driveTrainSubsystem,0.2 ,90 ))
+        .andThen(new AutoTurn(m_driveTrainSubsystem,0.2 , 360 ));
+
+
+        case TRIANGLE:
+        return new AutoMove(m_driveTrainSubsystem, 50, 0.2)
+        .andThen(new AutoTurn (m_driveTrainSubsystem, 0.2 , -60))
+        .andThen(new AutoMove(m_driveTrainSubsystem,50 ,0.2 ))
+        .andThen(new AutoTurn (m_driveTrainSubsystem, 0.2 ,-60 ))
+        .andThen(new AutoTurn (m_driveTrainSubsystem, 0.2, 60));
     }
 
       return null;
